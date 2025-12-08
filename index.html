@@ -9,7 +9,7 @@
    <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap">
+      href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap">
     
     <style>
        /* Fullscreen white overlay */
@@ -31,29 +31,29 @@
 
 /* cursive + your color #29292a */
 .handwrite-text {
-  font-family: "Marck Script", cursive;
-  font-size: 2.7rem;
+  font-family: "Style Script", cursive;
+  font-size: 2.8rem;
   font-weight: 400;
   letter-spacing: 0.04em;
   color: #29292a;
   margin: 0;
   position: relative;
   display: inline-block;
-  overflow: hidden;
+  overflow: visible;              /* important: do NOT clip curves */
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.20),
     0 0 8px rgba(0, 0, 0, 0.14);
   animation: textGlow 1.8s ease-in-out infinite alternate;
 }
 
-/* reveal mask */
+/* reveal mask with extra padding so nothing gets cut */
 .handwrite-text::after {
   content: "";
   position: absolute;
-  top: -10%;
-  bottom: -10%;
-  left: -6%;
-  right: -6%;
+  top: -20%;      /* more vertical room */
+  bottom: -20%;
+  left: -10%;
+  right: -10%;
   background: #ffffff;
   transform-origin: left center;
   animation: revealStroke 1.5s ease-out forwards;
