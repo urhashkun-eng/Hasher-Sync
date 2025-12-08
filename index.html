@@ -8,61 +8,106 @@
     
    <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
     
     <style>
        /* Fullscreen white overlay */
 .handwrite-overlay {
   position: fixed;
   inset: 0;
-  background: #ffffff;
+  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 45%, #e1e8ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  animation: overlayFadeOut 0.7s ease forwards;
-  animation-delay: 2.5s;
+  animation:
+    bgGlow 6s ease-in-out infinite alternate,   /* continuous glow */
+    overlayFadeOut 2.7s ease forwards;
+  animation-delay: 0s, 6s;   /* glow starts immediately, fade out after 6s */
+  box-shadow: 0 0 90px rgba(0, 0, 0, 0.4) inset;
+}
+        
+/* Centered text area */
+.handwrite-wrapper {
+  position: relative;
+  padding: 20px 40px;
 }
 
-.handwrite-svg {
-  width: 60%;
-  max-width: 600px;
+/* Cursive logo text */
+.handwrite-text {
+  font-family: "Great Vibes", cursive;
+  font-size: 3.4rem;              /* a bit thicker */
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #29292a;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  text-shadow:
+    0 0 6px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(0, 0, 0, 0.28);
+  animation: textGlow 4s ease-in-out infinite alternate;  /* longer, smoother */
 }
 
-/* the drawn line */
-.handwrite-path {
-  fill: none;
-  stroke: #29292a;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 800;
-  stroke-dashoffset: 800;
-  animation: drawStroke 1.8s ease-out forwards;
+/* White mask that “writes” from left to right */
+.handwrite-text::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: -5%;
+  right: -5%;
+  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 60%, #e1e8ff 100%);
+  transform-origin: left center;
+  animation: revealStroke 4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-/* the text that appears slightly after the stroke begins */
-.handwrite-label {
-  font-family: "Style Script", cursive;
-  font-size: 42px;
-  fill: #29292a;
-  opacity: 0;
-  animation: showText 0.6s ease-out forwards;
-  animation-delay: 0.9s;
+@keyframes revealStroke {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100%); }
 }
 
-/* keyframes */
 
-@keyframes drawStroke {
-  to {
-    stroke-dashoffset: 0;
+/* Slight glow while writing */
+.handwrite-text {
+  text-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+/* ----- KEYFRAMES ----- */
+
+/* Mask shrinks to reveal text like handwriting */
+@keyframes revealStroke {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* Fade overlay out after delay */
+@keyframes overlayFadeOut {
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden; }
+}
+        
+@keyframes textGlow {
+  0% {
+    text-shadow:
+      0 0 4px rgba(0, 0, 0, 0.25),
+      0 0 12px rgba(0, 0, 0, 0.18);
+  }
+  100% {
+    text-shadow:
+      0 0 10px rgba(0, 0, 0, 0.55),
+      0 0 28px rgba(0, 0, 0, 0.40);
   }
 }
 
-@keyframes showText {
-  to {
-    opacity: 1;
+@keyframes bgGlow {
+  0% {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.30) inset;
+  }
+  100% {
+    box-shadow: 0 0 110px rgba(0, 0, 0, 0.50) inset;
   }
 }
 
@@ -70,7 +115,7 @@
   from { opacity: 1; visibility: visible; }
   to   { opacity: 0; visibility: hidden; }
 }
-        
+
          /* ============================================
    FOOTER STYLES WITH ANIMATIONS
    ============================================ */
@@ -2307,15 +2352,9 @@
 <body>
     <!-- Hasher Sync handwritten intro overlay -->
 <div class="handwrite-overlay">
-  <svg class="handwrite-svg" viewBox="0 0 600 120">
-    <path class="handwrite-path"
-      d="M20,70
-         C80,20 120,120 180,60
-         C220,20 260,120 300,60
-         C340,20 380,120 440,60
-         C460,40 500,60 580,50" />
-    <text x="50" y="80" class="handwrite-label">Hasher Sync</text>
-  </svg>
+  <div class="handwrite-wrapper">
+    <h1 class="handwrite-text">Hasher Sync</h1>
+  </div>
 </div>
     <!-- Navigation -->
     <nav>
