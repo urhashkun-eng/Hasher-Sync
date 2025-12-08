@@ -8,58 +8,58 @@
     
    <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap">
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap">
     
     <style>
        /* Fullscreen white overlay */
 .handwrite-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, #ffffff 0%, #f5f6ff 40%, #e3e6ff 100%);
+  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 40%, #e0e6ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  animation: overlayFadeOut 0.6s ease forwards;
-  animation-delay: 1.8s;          /* VERY short overall */
+  animation: overlayFadeOut 0.7s ease forwards;
+  animation-delay: 2.2s;          /* on-screen time ≈ 2.2s */
 }
 
 .handwrite-wrapper {
-  padding: 12px 24px;
+  padding: 14px 28px;
 }
 
-/* New simpler, non‑thick font + your color #29292a */
+/* cursive + your color #29292a */
 .handwrite-text {
-  font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 2.4rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-family: "Marck Script", cursive;
+  font-size: 2.7rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: #29292a;
   margin: 0;
   position: relative;
   display: inline-block;
   overflow: hidden;
   text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.18),
-    0 0 9px rgba(0, 0, 0, 0.12);
-  animation: textGlow 1.4s ease-in-out infinite alternate;
+    0 0 3px rgba(0, 0, 0, 0.20),
+    0 0 8px rgba(0, 0, 0, 0.14);
+  animation: textGlow 1.8s ease-in-out infinite alternate;
 }
 
-/* Quick reveal mask */
+/* reveal mask */
 .handwrite-text::after {
   content: "";
   position: absolute;
   top: -10%;
   bottom: -10%;
-  left: -5%;
-  right: -5%;
+  left: -6%;
+  right: -6%;
   background: #ffffff;
   transform-origin: left center;
-  animation: revealStroke 1.2s ease-out forwards;
+  animation: revealStroke 1.5s ease-out forwards;
 }
 
-/* Keyframes */
+/* keyframes */
 
 @keyframes revealStroke {
   0%   { transform: translateX(0); }
@@ -83,7 +83,7 @@
   from { opacity: 1; visibility: visible; }
   to   { opacity: 0; visibility: hidden; }
 }
-
+        
          /* ============================================
    FOOTER STYLES WITH ANIMATIONS
    ============================================ */
