@@ -3,8 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Hasher Sync - Enterprise Digital Solutions</title>
+    
+   <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
+    
     <style>
+       /* Fullscreen white overlay */
+.handwrite-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 45%, #e1e8ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation:
+    bgGlow 6s ease-in-out infinite alternate,   /* continuous glow */
+    overlayFadeOut 2.7s ease forwards;
+  animation-delay: 0s, 6s;   /* glow starts immediately, fade out after 6s */
+  box-shadow: 0 0 90px rgba(0, 0, 0, 0.4) inset;
+}
+        
+/* Centered text area */
+.handwrite-wrapper {
+  position: relative;
+  padding: 20px 40px;
+}
+
+/* Cursive logo text */
+.handwrite-text {
+  font-family: "Great Vibes", cursive;
+  font-size: 3.4rem;              /* a bit thicker */
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #29292a;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  text-shadow:
+    0 0 6px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(0, 0, 0, 0.28);
+  animation: textGlow 4s ease-in-out infinite alternate;  /* longer, smoother */
+}
+
+/* White mask that “writes” from left to right */
+.handwrite-text::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: -5%;
+  right: -5%;
+  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 60%, #e1e8ff 100%);
+  transform-origin: left center;
+  animation: revealStroke 4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes revealStroke {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+
+/* Slight glow while writing */
+.handwrite-text {
+  text-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+/* ----- KEYFRAMES ----- */
+
+/* Mask shrinks to reveal text like handwriting */
+@keyframes revealStroke {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* Fade overlay out after delay */
+@keyframes overlayFadeOut {
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden; }
+}
+        
+@keyframes textGlow {
+  0% {
+    text-shadow:
+      0 0 4px rgba(0, 0, 0, 0.25),
+      0 0 12px rgba(0, 0, 0, 0.18);
+  }
+  100% {
+    text-shadow:
+      0 0 10px rgba(0, 0, 0, 0.55),
+      0 0 28px rgba(0, 0, 0, 0.40);
+  }
+}
+
+@keyframes bgGlow {
+  0% {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.30) inset;
+  }
+  100% {
+    box-shadow: 0 0 110px rgba(0, 0, 0, 0.50) inset;
+  }
+}
+
+@keyframes overlayFadeOut {
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden; }
+}
+
+         /* ============================================
+   FOOTER STYLES WITH ANIMATIONS
+   ============================================ */
+
+.footer-container {
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+  color: #ffffff;
+  padding: 60px 20px 30px;
+  margin-top: 80px;
+  border-top: 2px solid rgba(100, 200, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Animated background shimmer */
+.footer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.1), transparent);
+  animation: footerShimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes footerShimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
+}
+
+/* ---- FOOTER BRAND ---- */
+.footer-brand {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInUp 0.8s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-title {
+  font-size: 2.5em;
+  font-style: italic;
+  font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+  color: #64c8ff;
+  margin: 0 0 10px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 30px rgba(100, 200, 255, 0.5);
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.footer-tagline {
+  font-size: 1.1em;
+  color: #a0d4ff;
+  margin: 0;
+  letter-spacing: 1px;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(100, 200, 255, 0.5); }
+  50% { text-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
+}
+
+/* ---- TEAM SECTION ---- */
+.footer-team {
+  text-align: center;
+  margin: 50px 0;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+  position: relative;
+  z-index: 1;
+}
+
+.team-heading {
+  font-size: 1.8em;
+  color: #64c8ff;
+  margin: 0 0 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.team-members {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  animation: slideInUp 0.6s ease-out both;
+}
+
+.team-card:nth-child(1) { animation-delay: 0.3s; }
+.team-card:nth-child(2) { animation-delay: 0.4s; }
+.team-card:nth-child(3) { animation-delay: 0.5s; }
+
+.team-card:hover {
+  transform: translateY(-10px);
+}
+
+.team-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #64c8ff, #00d4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #0f0f1e;
+  box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.team-card:hover .team-avatar {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+  transform: scale(1.1);
+}
+
+.team-name {
+  font-size: 1.1em;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.team-role {
+  font-size: 0.9em;
+  color: #a0d4ff;
+  margin: 0;
+  font-style: italic;
+}
+
+.team-card:hover .team-name {
+  color: #64c8ff;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- SOCIAL SECTION ---- */
+.footer-social {
+  text-align: center;
+  margin: 50px 0;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  position: relative;
+  z-index: 1;
+}
+
+.social-heading {
+  font-size: 1.8em;
+  color: #64c8ff;
+  margin: 0 0 40px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-link i {
+  font-size: 1.5em;
+  color: #64c8ff;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: #00d4ff;
+  transform: translateY(-8px) scale(1.1);
+}
+
+.social-link:hover i {
+  color: #00d4ff;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .social-heading {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+  }
+
+  .social-links {
+    gap: 20px;
+  }
+
+  .social-link {
+    width: 45px;
+    height: 45px;
+  }
+
+  .social-link i {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-heading {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+  }
+
+  .social-links {
+    gap: 15px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link i {
+    font-size: 1.1em;
+  }
+}
+
+/* ---- FOOTER BOTTOM ---- */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(100, 200, 255, 0.2);
+  padding-top: 30px;
+  margin-top: 40px;
+  color: #7a9fb0;
+  font-size: 0.95em;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-bottom p {
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ---- RESPONSIVE DESIGN ---- */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 40px 15px 20px;
+  }
+
+  .footer-title {
+    font-size: 2em;
+  }
+
+  .footer-tagline {
+    font-size: 0.95em;
+  }
+
+  .team-heading,
+  .social-heading {
+    font-size: 1.4em;
+  }
+
+  .team-members {
+    gap: 30px;
+  }
+
+  .team-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+  }
+
+  .team-name {
+    font-size: 1em;
+  }
+
+  .social-links {
+    gap: 15px;
+  }
+
+  .social-link {
+    font-size: 0.85em;
+    padding: 8px 12px;
+  }
+
+  .social-link i {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-title {
+    font-size: 1.5em;
+  }
+
+  .footer-tagline {
+    font-size: 0.85em;
+  }
+
+  .team-heading,
+  .social-heading {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  .team-members {
+    gap: 20px;
+  }
+
+  .social-links {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.9em;
+  }
+}
         * {
             margin: 0;
             padding: 0;
@@ -1902,6 +2350,12 @@
     </style>
 </head>
 <body>
+    <!-- Hasher Sync handwritten intro overlay -->
+<div class="handwrite-overlay">
+  <div class="handwrite-wrapper">
+    <h1 class="handwrite-text">Hasher Sync</h1>
+  </div>
+</div>
     <!-- Navigation -->
     <nav>
         <div class="container">
@@ -2373,11 +2827,67 @@
             </div>
         </div>
     </section>
+ <!-- FOOTER SECTION -->
+<footer class="footer-container">
+  <!-- Hasher Sync Branding Section -->
+  <div class="footer-brand">
+    <h1 class="footer-title">Hasher Sync</h1>
+    <p class="footer-tagline">Building the Future, One Byte at a Time</p>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Hasher Sync. All rights reserved. Enterprise solutions for ambitious businesses. Founded by Chaitanya Rajput.</p>
-    </footer>
+  <!-- Team Section -->
+  <div class="footer-team">
+    <h2 class="team-heading">Our Team</h2>
+    <div class="team-members">
+      <div class="team-card">
+        <div class="team-avatar">N</div>
+        <h3 class="team-name">Neha</h3>
+        <p class="team-role">Founder</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">C</div>
+        <h3 class="team-name">Chaitanya Rajput</h3>
+        <p class="team-role">Co-Founder</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">Co</div>
+        <h3 class="team-name">Columbina</h3>
+        <p class="team-role">Designer</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Media Section -->
+ <div class="footer-social">
+  <h3 class="social-heading">Follow Us</h3>
+  <div class="social-links">
+    <!-- Instagram -->
+    <a href="https://instagram.com/hashersync" class="social-link" target="_blank" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/company/hashersync" class="social-link" target="_blank" title="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <!-- GitHub -->
+    <a href="https://github.com/hashersync" class="social-link" target="_blank" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <!-- Email -->
+    <a href="mailto:hash@hashersync.in" class="social-link" title="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+</div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Hasher Sync. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Font Awesome Icons (Add to <head> if not already included) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
         // Theme Toggle
