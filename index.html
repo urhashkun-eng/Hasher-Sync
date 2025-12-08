@@ -178,7 +178,7 @@
 .social-heading {
   font-size: 1.8em;
   color: #64c8ff;
-  margin: 0 0 30px;
+  margin: 0 0 40px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -186,76 +186,79 @@
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  gap: 30px;
   flex-wrap: wrap;
 }
 
 .social-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.95em;
-  padding: 10px 15px;
-  border-radius: 8px;
+  border-radius: 50%;
+  border: 2px solid #64c8ff;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(100, 200, 255, 0.2);
-}
-
-.social-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(100, 200, 255, 0.2);
-  transition: left 0.3s ease;
-  z-index: -1;
-  border-radius: 8px;
-}
-
-.social-link:hover::before {
-  left: 0;
+  background: rgba(100, 200, 255, 0.1);
 }
 
 .social-link i {
-  font-size: 1.3em;
-  transition: all 0.3s ease;
+  font-size: 1.5em;
   color: #64c8ff;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: #00d4ff;
+  transform: translateY(-8px) scale(1.1);
 }
 
 .social-link:hover i {
   color: #00d4ff;
-  transform: scale(1.2) rotate(5deg);
-  text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
 }
 
-.social-link:hover {
-  color: #64c8ff;
-  transform: translateY(-3px);
-  border-color: rgba(0, 212, 255, 0.5);
-}
-
-.social-link span {
-  transition: all 0.3s ease;
-}
-
-.social-link:hover span {
-  color: #00d4ff;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@media (max-width: 768px) {
+  .social-heading {
+    font-size: 1.4em;
+    margin-bottom: 30px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .social-links {
+    gap: 20px;
+  }
+
+  .social-link {
+    width: 45px;
+    height: 45px;
+  }
+
+  .social-link i {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-heading {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+  }
+
+  .social-links {
+    gap: 15px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link i {
+    font-size: 1.1em;
   }
 }
 
@@ -2756,28 +2759,23 @@
   <div class="footer-social">
     <h3 class="social-heading">Follow Us</h3>
     <div class="social-links">
-      <a href="https://instagram.com/hashersync" class="social-link" title="Instagram">
+      <a href="https://instagram.com/hashersync" class="social-link" target="_blank" title="Instagram">
         <i class="fab fa-instagram"></i>
-        <span>@hashersync</span>
       </a>
-      <a href="https://twitter.com/hashersync" class="social-link" title="Twitter">
+      <a href="https://twitter.com/hashersync" class="social-link" target="_blank" title="Twitter">
         <i class="fab fa-twitter"></i>
-        <span>@hashersync</span>
       </a>
-      <a href="https://linkedin.com/company/hashersync" class="social-link" title="LinkedIn">
+      <a href="https://linkedin.com/company/hashersync" class="social-link" target="_blank" title="LinkedIn">
         <i class="fab fa-linkedin"></i>
-        <span>Hasher Sync</span>
       </a>
-      <a href="https://github.com/hashersync" class="social-link" title="GitHub">
+      <a href="https://github.com/hashersync" class="social-link" target="_blank" title="GitHub">
         <i class="fab fa-github"></i>
-        <span>hashersync</span>
       </a>
       <a href="mailto:hello@hashersync.in" class="social-link" title="Email">
         <i class="fas fa-envelope"></i>
-        <span>hello@hashersync.in</span>
       </a>
     </div>
-  </div>
+</div>
 
   <!-- Footer Bottom -->
   <div class="footer-bottom">
