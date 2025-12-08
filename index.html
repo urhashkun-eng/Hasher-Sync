@@ -16,16 +16,18 @@
 .handwrite-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, #ffffff 0%, #f3f6ff 45%, #dde7ff 100%);
+  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 45%, #e1e8ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  animation: overlayFadeOut 1s ease forwards;
-  animation-delay: 4s; /* how long it stays visible */
-  box-shadow: 0 0 80px rgba(0, 0, 0, 0.35) inset;
+  animation:
+    bgGlow 6s ease-in-out infinite alternate,   /* continuous glow */
+    overlayFadeOut 1.2s ease forwards;
+  animation-delay: 0s, 6s;   /* glow starts immediately, fade out after 6s */
+  box-shadow: 0 0 90px rgba(0, 0, 0, 0.4) inset;
 }
-
+        
 /* Centered text area */
 .handwrite-wrapper {
   position: relative;
@@ -35,9 +37,9 @@
 /* Cursive logo text */
 .handwrite-text {
   font-family: "Great Vibes", cursive;
-  font-size: 3rem;
+  font-size: 3.4rem;              /* a bit thicker */
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: #000000;
   margin: 0;
   position: relative;
@@ -45,8 +47,8 @@
   overflow: hidden;
   text-shadow:
     0 0 6px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(0, 0, 0, 0.22);
-  animation: textGlow 2.5s ease-in-out infinite alternate;
+    0 0 20px rgba(0, 0, 0, 0.28);
+  animation: textGlow 4s ease-in-out infinite alternate;  /* longer, smoother */
 }
 
 /* White mask that “writes” from left to right */
@@ -57,9 +59,14 @@
   bottom: -10%;
   left: -5%;
   right: -5%;
-  background: #ffffff;
+  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 60%, #e1e8ff 100%);
   transform-origin: left center;
-  animation: revealStroke 2.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation: revealStroke 4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes revealStroke {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100%); }
 }
 
 
@@ -86,15 +93,28 @@
   0% {
     text-shadow:
       0 0 4px rgba(0, 0, 0, 0.25),
-      0 0 10px rgba(0, 0, 0, 0.15);
+      0 0 12px rgba(0, 0, 0, 0.18);
   }
   100% {
     text-shadow:
-      0 0 10px rgba(0, 0, 0, 0.45),
-      0 0 25px rgba(0, 0, 0, 0.30);
+      0 0 10px rgba(0, 0, 0, 0.55),
+      0 0 28px rgba(0, 0, 0, 0.40);
   }
 }
 
+@keyframes bgGlow {
+  0% {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.30) inset;
+  }
+  100% {
+    box-shadow: 0 0 110px rgba(0, 0, 0, 0.50) inset;
+  }
+}
+
+@keyframes overlayFadeOut {
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden; }
+}
 
          /* ============================================
    FOOTER STYLES WITH ANIMATIONS
