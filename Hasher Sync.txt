@@ -8,114 +8,9 @@
     
    <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
-    
+   
     <style>
-       /* Fullscreen white overlay */
-.handwrite-overlay {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 45%, #e1e8ff 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation:
-    bgGlow 6s ease-in-out infinite alternate,   /* continuous glow */
-    overlayFadeOut 1.3s ease forwards;
-  animation-delay: 0s, 4s;   /* glow starts immediately, fade out after 6s */
-  box-shadow: 0 0 90px rgba(0, 0, 0, 0.4) inset;
-}
-        
-/* Centered text area */
-.handwrite-wrapper {
-  position: relative;
-  padding: 20px 40px;
-}
-
-/* Cursive logo text */
-.handwrite-text {
-  font-family: "Great Vibes", cursive;
-  font-size: 3.4rem;              /* a bit thicker */
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: #29292a;
-  margin: 0;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  text-shadow:
-    0 0 6px rgba(0, 0, 0, 0.35),
-    0 0 20px rgba(0, 0, 0, 0.28);
-  animation: textGlow 2s ease-in-out infinite alternate;  /* longer, smoother */
-}
-
-/* White mask that “writes” from left to right */
-.handwrite-text::after {
-  content: "";
-  position: absolute;
-  top: -10%;
-  bottom: -10%;
-  left: -5%;
-  right: -5%;
-  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 60%, #e1e8ff 100%);
-  transform-origin: left center;
-  animation: revealStroke 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-@keyframes revealStroke {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(100%); }
-}
-
-
-/* Slight glow while writing */
-.handwrite-text {
-  text-shadow: 0 0 10px rgba(0,0,0,0.15);
-}
-
-/* ----- KEYFRAMES ----- */
-
-/* Mask shrinks to reveal text like handwriting */
-@keyframes revealStroke {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(100%); }
-}
-
-/* Fade overlay out after delay */
-@keyframes overlayFadeOut {
-  from { opacity: 1; visibility: visible; }
-  to   { opacity: 0; visibility: hidden; }
-}
-        
-@keyframes textGlow {
-  0% {
-    text-shadow:
-      0 0 4px rgba(0, 0, 0, 0.25),
-      0 0 12px rgba(0, 0, 0, 0.18);
-  }
-  100% {
-    text-shadow:
-      0 0 10px rgba(0, 0, 0, 0.55),
-      0 0 28px rgba(0, 0, 0, 0.40);
-  }
-}
-
-@keyframes bgGlow {
-  0% {
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.30) inset;
-  }
-  100% {
-    box-shadow: 0 0 110px rgba(0, 0, 0, 0.50) inset;
-  }
-}
-
-@keyframes overlayFadeOut {
-  from { opacity: 1; visibility: visible; }
-  to   { opacity: 0; visibility: hidden; }
-}
-
+    
          /* ============================================
    FOOTER STYLES WITH ANIMATIONS
    ============================================ */
@@ -522,23 +417,52 @@
         }
 
         /* Navigation */
-        nav {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            background: rgba(10, 14, 39, 0.85);
-            backdrop-filter: blur(40px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            border-radius: 50px;
-            animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 40px rgba(0, 217, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
+       nav {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(10, 14, 39, 0.85);
+    backdrop-filter: blur(40px);
+    z-index: 1000;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 50px;
+    /* remove old slideDown animation here */
+    /* animation: slideDown 0.6s ...  <-- delete this line */
+
+    /* NEW: pop-in animation */
+    opacity: 0;
+    transform-origin: top center;
+    animation: navPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Light mode override can stay the same */
+body.light-mode nav {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 217, 255, 0.15);
+    box-shadow: 0 8px 40px rgba(0, 217, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* New keyframes */
+@keyframes navPop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px) scale(0.85);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1.05);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
 
         body.light-mode nav {
             background: rgba(255, 255, 255, 0.85);
@@ -1072,7 +996,7 @@
             gap: 0.7rem;
             padding: 1.2rem 3.2rem;
             background: linear-gradient(135deg, var(--accent), var(--secondary));
-            color: #0a0e27;
+            color: #ffffff;
             text-decoration: none;
             border-radius: 10px;
             font-weight: 700;
@@ -1109,13 +1033,23 @@
         .cta-button:active {
             transform: translateY(-2px);
         }
+        a.cta-button. {
+  border-color: rgb(173, 216, 230); /* Lighter blue border */
+  box-shadow: 0 0 10px 5px rgba(173, 216, 230, 0.7), /* First glow layer */
+              0 0 20px 10px rgba(173, 216, 230, 0.5); /* Second glow layer */
+}
 
         .cta-button.secondary {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            color: var(--accent-dark);
+            border: 2px solid var(--accent-dark);
         }
-
+a.cta-button.secondary.ai-style-change-1 {
+  color: white;
+  border-color: rgb(173, 216, 230); /* Lighter blue border */
+  box-shadow: 0 0 10px 5px rgba(173, 216, 230, 0.7), /* First glow layer */
+              0 0 20px 10px rgba(173, 216, 230, 0.5); /* Second glow layer */
+}
         body.dark-mode .cta-button.secondary {
             color: var(--accent);
             border-color: var(--accent);
@@ -2155,7 +2089,7 @@
         }
 
         .contact-item h3 {
-            color: var(--primary);
+            color: var(--accent-dark);
             margin-bottom: 1.2rem;
             font-weight: 800;
             font-size: 1.2rem;
@@ -2177,7 +2111,7 @@
         }
 
         body.dark-mode .contact-item a {
-            color: var(--dark-text-secondary);
+            color: var(--accent-dark);
         }
 
         body.dark-mode .contact-item a:hover {
@@ -2350,12 +2284,7 @@
     </style>
 </head>
 <body>
-    <!-- Hasher Sync handwritten intro overlay -->
-<div class="handwrite-overlay">
-  <div class="handwrite-wrapper">
-    <h1 class="handwrite-text">Hasher Sync</h1>
-  </div>
-</div>
+
     <!-- Navigation -->
     <nav>
         <div class="container">
