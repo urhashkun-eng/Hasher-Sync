@@ -16,65 +16,53 @@
 .handwrite-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 40%, #e0e6ff 100%);
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   animation: overlayFadeOut 0.7s ease forwards;
-  animation-delay: 2.9s;     /* was ~2.2s → now slower by 0.7s */
+  animation-delay: 2.5s;
 }
 
-.handwrite-wrapper {
-  padding: 14px 28px;
+.handwrite-svg {
+  width: 60%;
+  max-width: 600px;
 }
 
-/* cursive + your color #29292a */
-.handwrite-text {
+/* the drawn line */
+.handwrite-path {
+  fill: none;
+  stroke: #29292a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: drawStroke 1.8s ease-out forwards;
+}
+
+/* the text that appears slightly after the stroke begins */
+.handwrite-label {
   font-family: "Style Script", cursive;
-  font-size: 3.2rem;              /* bigger text */
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: #29292a;
-  margin: 0;
-  position: relative;
-  display: inline-block;
-  overflow: visible;              /* prevent clipping of tall strokes */
-  text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.20),
-    0 0 8px rgba(0, 0, 0, 0.14);
-  animation: textGlow 2.5s ease-in-out infinite alternate;  /* slower glow */
+  font-size: 42px;
+  fill: #29292a;
+  opacity: 0;
+  animation: showText 0.6s ease-out forwards;
+  animation-delay: 0.9s;
 }
 
-/* white mask that “writes” the text */
-.handwrite-text::after {
-  content: "";
-  position: absolute;
-  top: -30%;       /* extra room so corners are safe */
-  bottom: -30%;
-  left: -12%;
-  right: -12%;
-  background: #ffffff;
-  transform-origin: left center;
-  animation: revealStroke 2.2s ease-out forwards;  /* slower by ~0.7s */
-}
 /* keyframes */
 
-@keyframes revealStroke {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+@keyframes drawStroke {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-@keyframes textGlow {
-  0% {
-    text-shadow:
-      0 0 2px rgba(0, 0, 0, 0.18),
-      0 0 6px rgba(0, 0, 0, 0.10);
-  }
-  100% {
-    text-shadow:
-      0 0 5px rgba(0, 0, 0, 0.30),
-      0 0 12px rgba(0, 0, 0, 0.18);
+@keyframes showText {
+  to {
+    opacity: 1;
   }
 }
 
@@ -2319,9 +2307,15 @@
 <body>
     <!-- Hasher Sync handwritten intro overlay -->
 <div class="handwrite-overlay">
-  <div class="handwrite-wrapper">
-    <h1 class="handwrite-text">Hasher Sync</h1>
-  </div>
+  <svg class="handwrite-svg" viewBox="0 0 600 120">
+    <path class="handwrite-path"
+      d="M20,70
+         C80,20 120,120 180,60
+         C220,20 260,120 300,60
+         C340,20 380,120 440,60
+         C460,40 500,60 580,50" />
+    <text x="50" y="80" class="handwrite-label">Hasher Sync</text>
+  </svg>
 </div>
     <!-- Navigation -->
     <nav>
