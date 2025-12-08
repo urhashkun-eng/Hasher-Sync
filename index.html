@@ -16,13 +16,14 @@
 .handwrite-overlay {
   position: fixed;
   inset: 0;
-  background: #ffffff;
+  background: radial-gradient(circle at center, #ffffff 0%, #f3f6ff 45%, #dde7ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   animation: overlayFadeOut 1s ease forwards;
-  animation-delay: 4s;             /* how long total before it disappears */
+  animation-delay: 4s; /* how long it stays visible */
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.35) inset;
 }
 
 /* Centered text area */
@@ -34,15 +35,18 @@
 /* Cursive logo text */
 .handwrite-text {
   font-family: "Great Vibes", cursive;
-  font-size: 4rem;          /* smaller = visually thinner */
+  font-size: 3rem;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: #000000;
   margin: 0;
   position: relative;
   display: inline-block;
   overflow: hidden;
-  text-shadow: 0 0 4px rgba(0,0,0,0.10);
+  text-shadow:
+    0 0 6px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(0, 0, 0, 0.22);
+  animation: textGlow 2.5s ease-in-out infinite alternate;
 }
 
 /* White mask that “writes” from left to right */
@@ -76,6 +80,19 @@
 @keyframes overlayFadeOut {
   from { opacity: 1; visibility: visible; }
   to   { opacity: 0; visibility: hidden; }
+}
+        
+@keyframes textGlow {
+  0% {
+    text-shadow:
+      0 0 4px rgba(0, 0, 0, 0.25),
+      0 0 10px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    text-shadow:
+      0 0 10px rgba(0, 0, 0, 0.45),
+      0 0 25px rgba(0, 0, 0, 0.30);
+  }
 }
 
 
