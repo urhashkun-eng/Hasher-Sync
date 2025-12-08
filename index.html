@@ -22,7 +22,7 @@
   justify-content: center;
   z-index: 9999;
   animation: overlayFadeOut 0.7s ease forwards;
-  animation-delay: 2.2s;          /* on-screen time ≈ 2.2s */
+  animation-delay: 2.9s;     /* was ~2.2s → now slower by 0.7s */
 }
 
 .handwrite-wrapper {
@@ -32,33 +32,32 @@
 /* cursive + your color #29292a */
 .handwrite-text {
   font-family: "Style Script", cursive;
-  font-size: 2.8rem;
+  font-size: 3.2rem;              /* bigger text */
   font-weight: 400;
   letter-spacing: 0.04em;
   color: #29292a;
   margin: 0;
   position: relative;
   display: inline-block;
-  overflow: visible;              /* important: do NOT clip curves */
+  overflow: visible;              /* prevent clipping of tall strokes */
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.20),
     0 0 8px rgba(0, 0, 0, 0.14);
-  animation: textGlow 1.8s ease-in-out infinite alternate;
+  animation: textGlow 2.5s ease-in-out infinite alternate;  /* slower glow */
 }
 
-/* reveal mask with extra padding so nothing gets cut */
+/* white mask that “writes” the text */
 .handwrite-text::after {
   content: "";
   position: absolute;
-  top: -20%;      /* more vertical room */
-  bottom: -20%;
-  left: -10%;
-  right: -10%;
+  top: -30%;       /* extra room so corners are safe */
+  bottom: -30%;
+  left: -12%;
+  right: -12%;
   background: #ffffff;
   transform-origin: left center;
-  animation: revealStroke 1.5s ease-out forwards;
+  animation: revealStroke 2.2s ease-out forwards;  /* slower by ~0.7s */
 }
-
 /* keyframes */
 
 @keyframes revealStroke {
