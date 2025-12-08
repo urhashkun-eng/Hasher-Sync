@@ -24,7 +24,7 @@
   animation:
     bgGlow 6s ease-in-out infinite alternate,   /* continuous glow */
     overlayFadeOut 1.3s ease forwards;
-  animation-delay: 0s, 4s;   /* glow starts immediately, fade out after 6s */
+  animation-delay: 0s, 1.2s;   /* glow starts immediately, fade out after 6s */
   box-shadow: 0 0 90px rgba(0, 0, 0, 0.4) inset;
 }
         
@@ -48,7 +48,7 @@
   text-shadow:
     0 0 6px rgba(0, 0, 0, 0.35),
     0 0 20px rgba(0, 0, 0, 0.28);
-  animation: textGlow 2s ease-in-out infinite alternate;  /* longer, smoother */
+  animation: textGlow 1.7s ease-in-out infinite alternate;  /* longer, smoother */
 }
 
 /* White mask that “writes” from left to right */
@@ -61,7 +61,7 @@
   right: -5%;
   background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 60%, #e1e8ff 100%);
   transform-origin: left center;
-  animation: revealStroke 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation: revealStroke 1.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 @keyframes revealStroke {
