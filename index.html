@@ -35,7 +35,7 @@
 /* Cursive logo text */
 .handwrite-text {
   font-family: "Dancing Script", "Brush Script MT", "Lucida Handwriting", cursive;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 400;          /* lighter stroke */
   letter-spacing: 0.08em;    /* a bit more spacing */
   color: #000000;
@@ -50,11 +50,15 @@
 .handwrite-text::after {
   content: "";
   position: absolute;
-  inset: 0;
+  top: -10%;
+  bottom: -10%;
+  left: -5%;
+  right: -5%;
   background: #ffffff;
   transform-origin: left center;
   animation: revealStroke 2.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
+
 
 /* Slight glow while writing */
 .handwrite-text {
