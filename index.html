@@ -9,105 +9,73 @@
    <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
     
     <style>
        /* Fullscreen white overlay */
 .handwrite-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 45%, #e1e8ff 100%);
+  background: radial-gradient(circle at center, #ffffff 0%, #f4f7ff 40%, #dde6ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  animation:
-    bgGlow 6s ease-in-out infinite alternate,   /* continuous glow */
-    overlayFadeOut 1.2s ease forwards;
-  animation-delay: 0s, 6s;   /* glow starts immediately, fade out after 6s */
-  box-shadow: 0 0 90px rgba(0, 0, 0, 0.4) inset;
-}
-        
-/* Centered text area */
-.handwrite-wrapper {
-  position: relative;
-  padding: 20px 40px;
+  animation: overlayFadeOut 0.8s ease forwards;
+  animation-delay: 3s;              /* total time on screen */
 }
 
-/* Cursive logo text */
+.handwrite-wrapper {
+  padding: 16px 32px;
+}
+
+/* NEW simpler cursive */
 .handwrite-text {
-  font-family: "Great Vibes", cursive;
-  font-size: 3.4rem;              /* a bit thicker */
+  font-family: "Pacifico", cursive;
+  font-size: 3rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   color: #000000;
   margin: 0;
   position: relative;
   display: inline-block;
   overflow: hidden;
   text-shadow:
-    0 0 6px rgba(0, 0, 0, 0.35),
-    0 0 20px rgba(0, 0, 0, 0.28);
-  animation: textGlow 4s ease-in-out infinite alternate;  /* longer, smoother */
+    0 0 4px rgba(0, 0, 0, 0.25),
+    0 0 10px rgba(0, 0, 0, 0.18);
+  animation: textGlow 2.2s ease-in-out infinite alternate;
 }
 
-/* White mask that “writes” from left to right */
+/* Reveal mask (shorter, snappier) */
 .handwrite-text::after {
   content: "";
   position: absolute;
-  top: -10%;
-  bottom: -10%;
-  left: -5%;
-  right: -5%;
-  background: radial-gradient(circle at center, #ffffff 0%, #f5f7ff 60%, #e1e8ff 100%);
+  top: -8%;
+  bottom: -8%;
+  left: -4%;
+  right: -4%;
+  background: #ffffff;
   transform-origin: left center;
-  animation: revealStroke 4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation: revealStroke 2s ease-out forwards;
 }
+
+/* Keyframes */
 
 @keyframes revealStroke {
   0%   { transform: translateX(0); }
   100% { transform: translateX(100%); }
 }
 
-
-/* Slight glow while writing */
-.handwrite-text {
-  text-shadow: 0 0 10px rgba(0,0,0,0.15);
-}
-
-/* ----- KEYFRAMES ----- */
-
-/* Mask shrinks to reveal text like handwriting */
-@keyframes revealStroke {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(100%); }
-}
-
-/* Fade overlay out after delay */
-@keyframes overlayFadeOut {
-  from { opacity: 1; visibility: visible; }
-  to   { opacity: 0; visibility: hidden; }
-}
-        
 @keyframes textGlow {
   0% {
     text-shadow:
-      0 0 4px rgba(0, 0, 0, 0.25),
-      0 0 12px rgba(0, 0, 0, 0.18);
+      0 0 3px rgba(0, 0, 0, 0.2),
+      0 0 8px rgba(0, 0, 0, 0.12);
   }
   100% {
     text-shadow:
-      0 0 10px rgba(0, 0, 0, 0.55),
-      0 0 28px rgba(0, 0, 0, 0.40);
-  }
-}
-
-@keyframes bgGlow {
-  0% {
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.30) inset;
-  }
-  100% {
-    box-shadow: 0 0 110px rgba(0, 0, 0, 0.50) inset;
+      0 0 6px rgba(0, 0, 0, 0.35),
+      0 0 14px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -115,6 +83,7 @@
   from { opacity: 1; visibility: visible; }
   to   { opacity: 0; visibility: hidden; }
 }
+
 
          /* ============================================
    FOOTER STYLES WITH ANIMATIONS
