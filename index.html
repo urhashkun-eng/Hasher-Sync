@@ -8,8 +8,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Intro overlay */
-.intro-overlay {
+       /* Fullscreen white overlay */
+.handwrite-overlay {
   position: fixed;
   inset: 0;
   background: #ffffff;
@@ -18,53 +18,55 @@
   justify-content: center;
   z-index: 9999;
   animation: overlayFadeOut 1s ease forwards;
-  animation-delay: 4s;          /* how long it stays visible total */
+  animation-delay: 4s;             /* how long total before it disappears */
 }
 
-/* Wrapper for typing effect */
-.intro-text-wrapper {
-  display: inline-flex;
-  align-items: center;
-  overflow: hidden;
-  border-right: 0.18em solid #000;
-  white-space: nowrap;
+/* Centered text area */
+.handwrite-wrapper {
+  position: relative;
+  padding: 20px 40px;
 }
 
-/* Cursive text */
-.intro-text {
+/* Cursive logo text */
+.handwrite-text {
   font-family: "Brush Script MT","Lucida Handwriting",cursive;
-  font-size: 3.2rem;
-  color: #000;
+  font-size: 4rem;
+  color: #000000;
   margin: 0;
-  animation: typeHasher 2.5s steps(12, end) forwards;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
 }
 
-/* Cursor (optional extra glow) */
-.intro-cursor {
-  width: 0.18em;
-  height: 1.1em;
-  background: #000;
-  margin-left: 4px;
-  animation: cursorBlink 0.7s step-end infinite;
+/* White mask that “writes” from left to right */
+.handwrite-text::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  transform-origin: left center;
+  animation: revealStroke 2.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-/* Typing animation */
-@keyframes typeHasher {
-  from { width: 0; }
-  to   { width: 100%; }
+/* Slight glow while writing */
+.handwrite-text {
+  text-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
-/* Cursor blink */
-@keyframes cursorBlink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
+/* ----- KEYFRAMES ----- */
+
+/* Mask shrinks to reveal text like handwriting */
+@keyframes revealStroke {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100%); }
 }
 
-/* Overlay fade out after delay */
+/* Fade overlay out after delay */
 @keyframes overlayFadeOut {
   from { opacity: 1; visibility: visible; }
   to   { opacity: 0; visibility: hidden; }
 }
+
 
          /* ============================================
    FOOTER STYLES WITH ANIMATIONS
@@ -2300,11 +2302,10 @@
     </style>
 </head>
 <body>
-    <!-- Hasher Sync intro overlay -->
-<div class="intro-overlay">
-  <div class="intro-text-wrapper">
-    <h1 class="intro-text">Hasher Sync</h1>
-    <span class="intro-cursor"></span>
+    <!-- Hasher Sync handwritten intro overlay -->
+<div class="handwrite-overlay">
+  <div class="handwrite-wrapper">
+    <h1 class="handwrite-text">Hasher Sync</h1>
   </div>
 </div>
     <!-- Navigation -->
