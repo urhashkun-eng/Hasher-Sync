@@ -8,6 +8,64 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* Intro overlay */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: overlayFadeOut 1s ease forwards;
+  animation-delay: 4s;          /* how long it stays visible total */
+}
+
+/* Wrapper for typing effect */
+.intro-text-wrapper {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border-right: 0.18em solid #000;
+  white-space: nowrap;
+}
+
+/* Cursive text */
+.intro-text {
+  font-family: "Brush Script MT","Lucida Handwriting",cursive;
+  font-size: 3.2rem;
+  color: #000;
+  margin: 0;
+  animation: typeHasher 2.5s steps(12, end) forwards;
+}
+
+/* Cursor (optional extra glow) */
+.intro-cursor {
+  width: 0.18em;
+  height: 1.1em;
+  background: #000;
+  margin-left: 4px;
+  animation: cursorBlink 0.7s step-end infinite;
+}
+
+/* Typing animation */
+@keyframes typeHasher {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* Cursor blink */
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Overlay fade out after delay */
+@keyframes overlayFadeOut {
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden; }
+}
+
          /* ============================================
    FOOTER STYLES WITH ANIMATIONS
    ============================================ */
@@ -2242,6 +2300,13 @@
     </style>
 </head>
 <body>
+    <!-- Hasher Sync intro overlay -->
+<div class="intro-overlay">
+  <div class="intro-text-wrapper">
+    <h1 class="intro-text">Hasher Sync</h1>
+    <span class="intro-cursor"></span>
+  </div>
+</div>
     <!-- Navigation -->
     <nav>
         <div class="container">
